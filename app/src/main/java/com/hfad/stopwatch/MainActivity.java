@@ -114,6 +114,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (running) {
+            saveOffset();
+            stopwatch.stop();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (running){
+            setBaseTime();
+            stopwatch.start();
+            offset = 0;
+        }
+    }
+
+
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState)
